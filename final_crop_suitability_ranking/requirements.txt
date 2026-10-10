@@ -1,0 +1,5 @@
+Flask
+Flask-Cors
+pandas
+joblib
+scikit-learn==1.6.1

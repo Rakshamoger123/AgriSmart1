@@ -1,0 +1,11 @@
+{
+  "name": "AgriSmart - Crop Recommendation",
+  "description": "Climate-Smart Crop Recommendation Android mobile application using soil and climate data for farmers and agricultural officers.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
