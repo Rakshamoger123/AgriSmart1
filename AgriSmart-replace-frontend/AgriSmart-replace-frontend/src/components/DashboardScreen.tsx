@@ -43,6 +43,7 @@ import { ProfileModal } from './ProfileModal';
 import { NotificationsModal } from './NotificationsModal';
 import { AdvisoriesView } from './AdvisoriesView';
 import { PredictSimulator } from './PredictSimulator';
+import { PredictionHistory } from './PredictionHistory';
 
 interface DashboardScreenProps {
   user: UserProfile;
@@ -69,8 +70,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
   const [isGenerated, setIsGenerated] = useState<boolean>(true);
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'predict' | 'queries' | 'advisories' | 'about'>('dashboard');
-
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'predict' | 'history' | 'queries' | 'advisories' | 'about'>('dashboard');
   // Modals state
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
@@ -248,36 +248,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
               ? 'bg-emerald-600 text-white shadow-sm'
               : 'text-slate-600 hover:bg-slate-100'
               }`}
-          >
-            <FlaskConical className="w-3.5 h-3.5" />
-            <span>Soil Simulator</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('queries')}
-            className={`flex-1 min-w-[110px] py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${activeTab === 'queries'
-              ? 'bg-emerald-600 text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
-              }`}
-          >
-            <History className="w-3.5 h-3.5" />
-            <span>My Queries</span>
-            {queries.some((q) => q.status === 'Pending') && (
-              <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-            )}
-          </button>
-
-          <button
-            onClick={() => setActiveTab('advisories')}
-            className={`flex-1 min-w-[110px] py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${activeTab === 'advisories'
-              ? 'bg-emerald-600 text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
-              }`}
-          >
-            <FileText className="w-3.5 h-3.5" />
-            <span>Advisories</span>
-          </button>
-        </div>
+         
 
         {/* TAB 1: Soil Simulator */}
         {activeTab === 'predict' && (
@@ -290,6 +261,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             }}
           />
         )}
+        {/* TAB: Prediction History */}
+{activeTab === 'history' && (
+  <PredictionHistory />
+)}
 
         {/* TAB 2: Advisories */}
         {activeTab === 'advisories' && (
